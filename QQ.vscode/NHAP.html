@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportWear - Thời Trang Thể Thao Chính Hãng</title>
+    <link rel="stylesheet" href="css.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <div class="logo">
+                     <img src="logo.png" alt="SportWear - Equipped for Champions Beyond Limits" class="logo-img">
+                    <h1>SportWear</h1>
+                </div>
+    <style>
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+               <div class="logo">
+                     <img src="logo.png" alt="SportWear - Equipped for Champions Beyond Limits" class="logo-img">
+                    <h1>SportWear</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <button class="auth-btn" onclick="showLoginModal()">
+                        <i class="fas fa-user"></i> Đăng nhập
+                    </button>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="container">
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')" class="nav-link">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="#" onclick="showSection('products')" class="nav-link">Sản phẩm <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="#" onclick="filterByCategory('ao-the-thao')">Áo thể thao</a>
+                                <a href="#" onclick="filterByCategory('quan-the-thao')">Quần thể thao</a>
+                                <a href="#" onclick="filterByCategory('giay-the-thao')">Giày thể thao</a>
+                                <a href="#" onclick="filterByCategory('phu-kien')">Phụ kiện</a>
+                            </div>
+                        </li>
+                        <li><a href="#" onclick="showSection('about')" class="nav-link">Về chúng tôi</a></li>
+                        <li><a href="#" onclick="showSection('blog')" class="nav-link">Blog</a></li>
+                        <li><a href="#" onclick="showSection('contact')" class="nav-link">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <!-- Hero Banner -->
+        <div class="hero">
+            <div class="hero-slider">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <h2>BST Thể Thao Mùa Hè 2024</h2>
+                        <p>Khám phá bộ sưu tập thời trang thể thao năng động và hiện đại</p>
+                        <button class="cta-btn" onclick="showSection('products')">Mua ngay</button>
+                    </div>
+                    <!-- Đổi ảnh ở url -->
+                    <div class="slide-bg" style="
+                    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('anh2.jpg');
+                    background-size: cover;
+                    background-position: center;"></div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h2>Giày Thể Thao Chính Hãng</h2>
+                        <p>Bộ sưu tập giày thể thao từ các thương hiệu hàng đầu</p>
+                        <button class="cta-btn" onclick="filterByCategory('giay-the-thao')">Xem ngay</button>
+                    </div>
+                    <!-- Đổi ảnh ở url -->
+                    <div class="slide-bg" style="
+                    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('anh3.jpg');
+                    background-size: cover;
+                    background-position: center;"></div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h2>Phụ Kiện Thể Thao</h2>
+                        <p>Hoàn thiện phong cách với các phụ kiện chất lượng cao</p>
+                        <button class="cta-btn" onclick="filterByCategory('phu-kien')">Khám phá</button>
+                    </div>
+                     <!-- Đổi ảnh ở url -->
+                    <div class="slide-bg" style="
+                    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('anh4.jpg'); 
+                    background-size: cover;
+                    background-position: center;"></div>
+                </div>
+            </div>
+            <div class="hero-nav">
+                <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories">
+            <div class="container">
+                <h2 class="section-title">Danh mục sản phẩm</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterByCategory('ao-the-thao')">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Áo thể thao</h3>
+                        <p>Áo training, áo polo, áo tank top</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('quan-the-thao')">
+                        <div class="category-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>Quần thể thao</h3>
+                        <p>Quần short, quần dài, quần legging</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('giay-the-thao')">
+                        <div class="category-icon">
+                            <i class="fas fa-shoe-prints"></i>
+                        </div>
+                        <h3>Giày thể thao</h3>
+                        <p>Giày chạy, giày training, giày lifestyle</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('phu-kien')">
+                        <div class="category-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Phụ kiện</h3>
+                        <p>Balo, mũ, găng tay, khăn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Products -->
+        <div class="featured-products">
+            <div class="container">
+                <h2 class="section-title">Sản phẩm nổi bật</h2>
+                <div class="product-filters">
+                    <button class="filter-btn active" onclick="showFeatured('all')">Tất cả</button>
+                    <button class="filter-btn" onclick="showFeatured('new')">Sản phẩm mới</button>
+                    <button class="filter-btn" onclick="showFeatured('sale')">Khuyến mãi</button>
+                    <button class="filter-btn" onclick="showFeatured('popular')">Bán chạy</button>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <div class="container">
+                <h2>Đăng ký nhận tin tức</h2>
+                <p>Nhận thông tin về sản phẩm mới và ưu đãi đặc biệt</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Nhập email của bạn">
+                    <button onclick="subscribeNewsletter()">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">Tất Cả Sản Phẩm</h2>
+            <div class="product-filters">
+                <button class="filter-btn active" onclick="showAllProducts('all')">Tất cả</button>
+                <button class="filter-btn" onclick="showAllProducts('ao-the-thao')">Áo thể thao</button>
+                <button class="filter-btn" onclick="showAllProducts('quan-the-thao')">Quần thể thao</button>
+                <button class="filter-btn" onclick="showAllProducts('giay-the-thao')">Giày thể thao</button>
+                <button class="filter-btn" onclick="showAllProducts('phu-kien')">Phụ kiện</button>
+            </div>
+            <div class="product-grid" id="allProductsGrid">
+                <!-- All products will be displayed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Về Chúng Tôi</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>SportWear - Đồng Hành Cùng Đam Mê Thể Thao</h3>
+                    <p>Được thành lập từ năm 2018, SportWear tự hào là một trong những thương hiệu hàng đầu trong lĩnh vực thời trang thể thao tại Việt Nam. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng cao từ các thương hiệu nổi tiếng thế giới.</p>
+                    <p>Với sứ mệnh "Equipped for Champions Beyond Limits", chúng tôi không chỉ cung cấp trang phục thể thao mà còn truyền cảm hứng cho mọi người theo đuổi lối sống khỏe mạnh và năng động.</p>
+                    <p>Đội ngũ của chúng tôi luôn nỗ lực để đảm bảo rằng mỗi sản phẩm đều đáp ứng tiêu chuẩn chất lượng cao nhất, từ chất liệu, thiết kế đến tính năng sử dụng.</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop" alt="SportWear Store" class="about-image">
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Khách hàng hài lòng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Sản phẩm đa dạng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Thương hiệu đối tác</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Hỗ trợ khách hàng</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <h2 class="section-title">Tin Tức & Blog</h2>
+            <div class="blog-grid">
+                <article class="blog-card" onclick="showBlogDetail('blog1')">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" alt="Kỹ thuật chạy bộ" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">5 kỹ thuật chạy bộ hiệu quả cho người mới bắt đầu</h3>
+                        <p class="blog-excerpt">Khám phá những kỹ thuật chạy bộ cơ bản giúp bạn bắt đầu hành trình thể thao một cách an toàn và hiệu quả. Từ tư thế đúng đến nhịp thở...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 15/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card" onclick="showBlogDetail('blog2')">
+                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?w=400&h=250&fit=crop" alt="Chọn giày thể thao" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Cách chọn giày thể thao phù hợp với từng môn thể thao</h3>
+                        <p class="blog-excerpt">Hướng dẫn chi tiết về cách lựa chọn giày thể thao phù hợp với từng hoạt động để tối ưu hiệu suất và bảo vệ đôi chân của bạn...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 12/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card" onclick="showBlogDetail('blog3')">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=250&fit=crop" alt="Dinh dưỡng thể thao" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Dinh dưỡng cho người tập thể thao: Những điều cần biết</h3>
+                        <p class="blog-excerpt">Tìm hiểu về chế độ dinh dưỡng khoa học giúp tối ưu hóa hiệu suất tập luyện và phục hồi cơ thể một cách nhanh chóng...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 10/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card" onclick="showBlogDetail('blog4')">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=250&fit=crop" alt="Xu hướng thời trang thể thao" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Xu hướng thời trang thể thao 2024</h3>
+                        <p class="blog-excerpt">Khám phá những xu hướng thời trang thể thao mới nhất năm 2024, từ màu sắc trendy đến chất liệu công nghệ cao...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 08/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card" onclick="showBlogDetail('blog5')">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=250&fit=crop" alt="Bài tập cardio" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">10 bài tập cardio đốt cháy mỡ thừa hiệu quả tại nhà</h3>
+                        <p class="blog-excerpt">Hướng dẫn các bài tập cardio đơn giản nhưng hiệu quả có thể thực hiện tại nhà mà không cần thiết bị phức tạp...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 05/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="blog-card" onclick="showBlogDetail('blog6')">
+                    <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&h=250&fit=crop" alt="Chăm sóc đồ thể thao" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Cách bảo quản và chăm sóc đồ thể thao đúng cách</h3>
+                        <p class="blog-excerpt">Những mẹo hay để giữ cho trang phục thể thao luôn bền đẹp và giữ được tính năng kỹ thuật ban đầu...</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 02/12/2023</span>
+                            <span><i class="fas fa-user"></i> SportWear Team</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>Gửi tin nhắn cho chúng tôi</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Họ và tên</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Số điện thoại</label>
+                            <input type="tel" id="contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Chủ đề</label>
+                            <input type="text" id="contactSubject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Tin nhắn</label>
+                            <textarea id="contactMessage" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Thông tin liên hệ</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Địa chỉ cửa hàng</h4>
+                            <p>203 Phan Huy Ích, Phường 12, Quận Gò Vấp<br>Thành phố Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Hotline</h4>
+                            <p>1900 1234<br>0865 888 888</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@sportwear.vn</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Giờ làm việc</h4>
+                            <p>Thứ 2 - Thứ 7: 8:00 - 22:00<br>Chủ nhật: 9:00 - 21:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SportWear</h3>
+                    <p>Địa chỉ: 203 Phan Huy Ích, Phường 12, Quận Gò Vấp, TP.HCM</p>
+                    <p>Hotline: 1900 1234</p>
+                    <p>Email: info@sportwear.vn</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#" onclick="showSection('about')">Giới thiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#" onclick="showSection('contact')">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hỗ trợ khách hàng</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn mua hàng:</a> <p>Hãy chọn sản phẩm và thanh toán nhanh chóng.</p>
+    </li>
+                        <li><a href="#">Chính sách đổi trả:</a><p>Đổi/trả hàng miễn phí trong vòng 7 ngày nếu sản phẩm lỗi từ nhà sản xuất.</p></li>
+                        <li><a href="#">Chính sách bảo hành:</a><p>Sản phẩm được bảo hành 12 tháng theo điều kiện của nhà cung cấp.</p></li>
+                        <li><a href="#">Phương thức thanh toán:</a><p>Chấp nhận COD, chuyển khoản ngân hàng, ví điện tử (Momo, ZaloPay,...).</p></li>
+                    </ul>
+                </div>
+               <div class="footer-section">
+    <h4>Chính sách</h4>
+    <ul class="policy-list">
+        <li class="policy-item">
+            <div class="policy-header">
+                <strong>Điều khoản sử dụng</strong>
+                <button class="toggle-btn"></button>
+            </div>
+            <div class="policy-detail">
+                Khi sử dụng website của chúng tôi, bạn đồng ý tuân thủ các quy định về bảo mật thông tin, bản quyền nội dung và hành vi người dùng. Vi phạm có thể dẫn đến việc tạm ngưng tài khoản hoặc xử lý theo pháp luật.
+            </div>
+        </li>
+        <li class="policy-item">
+            <div class="policy-header">
+                <strong>Chính sách bảo mật</strong>
+                <button class="toggle-btn" ></button>
+            </div>
+            <div class="policy-detail"  >
+                Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng. Dữ liệu sẽ được mã hóa và không chia sẻ với bên thứ ba nếu không có sự đồng ý.
+            </div>
+        </li>
+        <li class="policy-item">
+            <div class="policy-header">
+                <strong>Chính sách giao hàng</strong>
+                <button class="toggle-btn"></button>
+            </div>
+            <div class="policy-detail">
+                Giao hàng trong vòng 2-5 ngày làm việc tùy khu vực. Miễn phí giao hàng cho đơn hàng trên 500.000 VNĐ. Có thể theo dõi đơn hàng online.
+            </div>
+        </li>
+        <li class="policy-item">
+            <div class="policy-header">
+                <strong>Hướng dẫn thanh toán</strong>
+                <button class="toggle-btn"></button>
+            </div>
+            <div class="policy-detail">
+                Chấp nhận chuyển khoản ngân hàng, ví điện tử (Momo, ZaloPay) và thanh toán khi nhận hàng. Kiểm tra kỹ thông tin trước khi xác nhận.
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+                
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SportWear. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Giỏ hàng</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #666; margin-top: 50px;">Giỏ hàng trống</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Tổng cộng: <span id="cartTotal">0₫</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Đăng nhập</h3>
+                <button class="close-modal" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Đăng nhập</button>
+                </form>
+                <p class="auth-switch">
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterModal()">Đăng ký ngay</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Chi tiết sản phẩm</h3>
+                <button class="close-modal" onclick="closeModal('productModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample product data with real images
+        const products = [
+    {
+        id: 1,
+        name: "Áo thể thao Nike Dri-FIT",
+        price: 890000,
+        oldPrice: 1200000,
+        category: "ao-the-thao",
+        image: "https://via.placeholder.com/300x250/dc2626/white?text=Nike+Áo",
+        description: "Áo thể thao cao cấp với công nghệ Dri-FIT thấm hút mồ hôi tốt",
+        sizes: ["S", "M", "L", "XL"],
+        badge: "Sale",
+        featured: ["sale", "popular"]
+    },
+    {
+        id: 2,
+        name: "Quần short Adidas 3-Stripes",
+        price: 650000,
+        oldPrice: null,
+        category: "quan-the-thao",
+        image: "https://via.placeholder.com/300x250/000000/white?text=Adidas+Quần",
+        description: "Quần short thể thao thoải mái với thiết kế 3 sọc iconic",
+        sizes: ["S", "M", "L", "XL"],
+        badge: "New",
+        featured: ["new", "popular"]
+    },
+    {
+        id: 3,
+        name: "Giày chạy bộ Nike Air Zoom",
+        price: 2500000,
+        oldPrice: 2800000,
+        category: "giay-the-thao",
+        image: "https://via.placeholder.com/300x250/dc2626/white?text=Nike+Giày",
+        description: "Giày chạy bộ với công nghệ Air Zoom cho bước chạy đàn hồi",
+        sizes: ["39", "40", "41", "42", "43"],
+        badge: "Hot",
+        featured: ["sale", "new", "popular"]
+    },
+    {
+        id: 4,
+        name: "Balo thể thao Under Armour",
+        price: 1200000,
+        oldPrice: null,
+        category: "phu-kien",
+        image: "https://via.placeholder.com/300x250/374151/white?text=UA+Balo",
+        description: "Balo thể thao đa năng với nhiều ngăn chứa tiện lợi",
+        sizes: ["OneSize"],
+        badge: null,
+        featured: ["new"]
+    },
+    {
+        id: 5,
+        name: "Áo polo Puma Essential",
+        price: 750000,
+        oldPrice: 950000,
+        category: "ao-the-thao",
+        image: "https://via.placeholder.com/300x250/000000/white?text=Puma+Polo",
+        description: "Áo polo thể thao phong cách casual cho mọi hoạt động",
+        sizes: ["S", "M", "L", "XL"],
+        badge: "Sale",
+        featured: ["sale"]
+    },
+    {
+        id: 6,
+        name: "Quần legging Nike Pro",
+        price: 980000,
+        oldPrice: null,
+        category: "quan-the-thao",
+        image: "https://via.placeholder.com/300x250/dc2626/white?text=Nike+Legging",
+        description: "Quần legging thể thao ôm sát với chất liệu co giãn 4 chiều",
+        sizes: ["S", "M", "L", "XL"],
+        badge: "New",
+        featured: ["new", "popular"]
+    },
+    {
+        id: 7,
+        name: "Giày training Reebok CrossFit",
+        price: 1800000,
+        oldPrice: 2200000,
+        category: "giay-the-thao",
+        image: "https://via.placeholder.com/300x250/374151/white?text=Reebok+Training",
+        description: "Giày training chuyên dụng cho các bài tập CrossFit",
+        sizes: ["39", "40", "41", "42", "43"],
+        badge: "Sale",
+        featured: ["sale", "popular"]
+    },
+    {
+        id: 8,
+        name: "Mũ thể thao New Era",
+        price: 450000,
+        oldPrice: null,
+        category: "phu-kien",
+        image: "https://via.placeholder.com/300x250/000000/white?text=New+Era+Mũ",
+        description: "Mũ lưỡi trai thể thao thời trang với logo thêu tinh tế",
+        sizes: ["OneSize"],
+        badge: null,
+        featured: ["new"]
+    },
+     {
+        id: 9,
+                name: "Áo hoodie ",
+                price: "1.650.000₫",
+                image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=250&fit=crop",
+                category: "ao-the-thao",
+                type: "sale",
+                originalPrice: "1.850.000₫",
+                description: "Áo hoodie Nike với chất liệu cotton pha, mang lại cảm giác ấm áp và thoải mái."
+            },
+            {
+                id: 10,
+                name: "Quần legging ",
+                price: "950.000₫",
+                image: "https://images.unsplash.com/photo-1506629905607-5582e9e79ba6?w=300&h=250&fit=crop",
+                category: "quan-the-thao",
+                type: "new",
+                description: "Quần legging Nike Pro với công nghệ co giãn 4 chiều và khả năng thấm hút mồ hôi."
+            },
+            {
+                id: 11,
+                name: "Giày chạy bộ ",
+                price: "3.450.000₫",
+                image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=300&h=250&fit=crop",
+                category: "giay-the-thao",
+                type: "popular",
+                description: "Giày chạy bộ Adidas Ultraboost với công nghệ đệm Boost và upper Primeknit."
+            },
+            {
+                id: 12,
+                name: "Mũ thể thao New Era",
+                price: "380.000₫",
+                image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300&h=250&fit=crop",
+                category: "phu-kien",
+                type: "new",
+                description: "Mũ thể thao New Era với thiết kế classic và chất liệu bền bỉ."
+            }
+        
+];
+
+
+        let cart = [];
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        // Navigation functions
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate corresponding nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(sectionId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Load content based on section
+            if (sectionId === 'products') {
+                showAllProducts('all');
+            }
+        }
+
+        // Hero slider functions
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Auto-play slider
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Product functions
+        function createProductCard(product) {
+            const salePrice = product.type === 'sale' && product.originalPrice ? 
+                `<span style="text-decoration: line-through; color: #999; margin-right: 10px;">${product.originalPrice}</span>` : '';
+            
+            return `
+                <div class="product-card" onclick="showProductDetail(${product.id})">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${salePrice}${product.price}</div>
+                        <div class="product-actions">
+                            <button class="btn-primary" onclick="event.stopPropagation(); addToCart(${product.id})">Thêm vào giỏ</button>
+                            <button class="btn-outline" onclick="event.stopPropagation(); showProductDetail(${product.id})">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showFeatured(type) {
+            let filteredProducts = products;
+            
+            if (type !== 'all') {
+                filteredProducts = products.filter(product => product.type === type);
+            }
+            
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = filteredProducts.slice(0, 8).map(createProductCard).join('');
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function showAllProducts(category) {
+            let filteredProducts = products;
+            
+            if (category !== 'all') {
+                filteredProducts = products.filter(product => product.category === category);
+            }
+            
+            const grid = document.getElementById('allProductsGrid');
+            grid.innerHTML = filteredProducts.map(createProductCard).join('');
+            
+            // Update filter buttons in products section
+            document.querySelectorAll('#products .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function filterByCategory(category) {
+            showSection('products');
+            setTimeout(() => {
+                showAllProducts(category);
+                // Update active filter button
+                document.querySelectorAll('#products .filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('onclick').includes(category)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }, 100);
+        }
+
+        function showProductDetail(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const modal = document.getElementById('productModal');
+    const title = document.getElementById('productModalTitle');
+    const body = document.getElementById('productModalBody');
+
+    title.textContent = product.name;
+    body.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
+            <img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: 10px;">
+            <div>
+                <h3 style="color: #374151; margin-bottom: 15px;">${product.name}</h3>
+                <p style="color: #6b7280; line-height: 1.6; margin-bottom: 20px;">${product.description}</p>
+                <div style="font-size: 24px; font-weight: bold; color: #dc2626; margin-bottom: 20px;">${product.price}</div>
+
+                <label for="productSize" style="display: block; margin-bottom: 8px;">Chọn size:</label>
+                <select id="productSize" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                    <option value="">-- Chọn size --</option>
+                    <option value="S">Size S</option>
+                    <option value="M">Size M</option>
+                    <option value="L">Size L</option>
+                    <option value="XL">Size XL</option>
+                </select>
+
+                <button id="addToCartBtn" class="btn-primary" style="width: 100%;">
+                    Thêm vào giỏ hàng
+                </button>
+            </div>
+        </div>
+    `;
+
+    modal.classList.add('active');
+
+    // Gán sự kiện click cho nút Thêm vào giỏ hàng
+    document.getElementById('addToCartBtn').onclick = function() {
+        const selectedSize = document.getElementById('productSize').value;
+        if (!selectedSize) {
+            alert('Vui lòng chọn size trước khi thêm vào giỏ hàng!');
+            return;
+        }
+        addToCart(productId, selectedSize);
+        closeModal('productModal');
+    };
+}
+
+
+        // Cart functions
+        function addToCart(productId, selectedSize = null) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Check if size selection is required
+    if (product.sizes.length > 1 && !selectedSize) {
+        showProductDetail(productId);
+        return;
+    }
+
+    const size = selectedSize || product.sizes[0];
+
+    // Check if item already exists in cart
+    const existingItem = cart.find(item =>
+        item.product.id === productId && item.size === size
+    );
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            product: product,
+            size: size,
+            quantity: 1
+        });
+    }
+
+    updateCartCount();
+    updateCartItems();
+    showMessage('Đã thêm sản phẩm vào giỏ hàng!', 'success');
+}
+
+
+function updateCartQuantity(productId, size, change) {
+    const item = cart.find(item =>
+        item.product.id === productId && item.size === size
+    );
+
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId, size);
+        } else {
+            updateCartCount();
+            updateCartItems();
+        }
+    }
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
+}
+
+function updateCartItems() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+
+    if (!cartItems || !cartTotal) return;
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <div style="text-align: center; padding: 40px 0; color: #666;">
+                <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 20px;"></i>
+                <p>Giỏ hàng trống</p>
+            </div>
+        `;
+        cartTotal.textContent = '0đ';
+        return;
+    }
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price} x ${item.quantity}</div>
+                    </div>
+             
+                    <button oncrlick="removeFromCart(${item.id})" style="background: none; border: none; color: #dc2626; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+               
+                </div>
+            `).join('');
+
+            // Calculate total (simplified - just count items)
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartTotal').textContent = `${totalItems} sản phẩm`;
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartSidebar.classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Giỏ hàng trống!');
+                return;
+            }
+            alert('Chức năng thanh toán đang được phát triển!');
+        }
+
+        // Modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Search function
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (!searchTerm) return;
+
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm)
+            );
+
+            showSection('products');
+            setTimeout(() => {
+                const grid = document.getElementById('allProductsGrid');
+                grid.innerHTML = filteredProducts.map(createProductCard).join('');
+            }, 100);
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.querySelector('.newsletter-form input').value;
+            if (email) {
+                alert('Cảm ơn bạn đã đăng ký nhận tin!');
+                document.querySelector('.newsletter-form input').value = '';
+            }
+        }
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+            this.reset();
+        });
+
+        // Login form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Đăng nhập thành công!');
+            closeModal('loginModal');
+        });
+
+        // Blog detail function
+        function showBlogDetail(blogId) {
+            alert('Chức năng xem chi tiết blog đang được phát triển!');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showFeatured('all');
+            
+            // Add click listeners for navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            });
+
+            // Handle search on Enter key
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchProducts();
+                }
+            });
+
+            // Close modal when clicking outside
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

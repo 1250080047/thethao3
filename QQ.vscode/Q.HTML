@@ -1,0 +1,259 @@
+!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportWear - Thời Trang Thể Thao</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <script src="script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                     <img src="logo.png" alt="SportWear - Equipped for Champions Beyond Limits" class="logo-img">
+                    <h1>SportWear</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <button class="auth-btn" onclick="showLoginModal()">
+                        <i class="fas fa-user"></i> Đăng nhập
+                    </button>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" class="active">Trang chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#products">Sản phẩm <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="filterByCategory('ao-the-thao')">Áo thể thao</a>
+                            <a href="#" onclick="filterByCategory('quan-the-thao')">Quần thể thao</a>
+                            <a href="#" onclick="filterByCategory('giay-the-thao')">Giày thể thao</a>
+                            <a href="#" onclick="filterByCategory('phu-kien')">Phụ kiện</a>
+                        </div>
+                    </li>
+                    <li><a href="#about">Về chúng tôi</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <div class="slide-content">
+                    <h2>BST Thể Thao Mùa Hè 2024</h2>
+                    <p>Khám phá bộ sưu tập thời trang thể thao năng động và hiện đại</p>
+                    <button class="cta-btn">Mua ngay</button>
+                </div>
+                <div class="slide-bg" style="
+                    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('anh2.jpg');
+                    background-size: cover;
+                    background-position: center;"></div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Giày Thể Thao Chính Hãng</h2>
+                    <p>Bộ sưu tập giày thể thao từ các thương hiệu hàng đầu</p>
+                    <button class="cta-btn">Xem ngay</button>
+                </div>
+                <div class="slide-bg" style="
+                    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('anh3.jpg');
+                    background-size: cover;
+                    background-position: center;"></div>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Danh mục sản phẩm</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('ao-the-thao')">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Áo thể thao</h3>
+                    <p>Áo training, áo polo, áo tank top</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('quan-the-thao')">
+                    <div class="category-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Quần thể thao</h3>
+                    <p>Quần short, quần dài, quần legging</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('giay-the-thao')">
+                    <div class="category-icon">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <h3>Giày thể thao</h3>
+                    <p>Giày chạy, giày training, giày lifestyle</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('phu-kien')">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Phụ kiện</h3>
+                    <p>Balo, mũ, găng tay, khăn</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Sản phẩm nổi bật</h2>
+            <div class="product-filters">
+                <button class="filter-btn active" onclick="showFeatured('all')">Tất cả</button>
+                <button class="filter-btn" onclick="showFeatured('new')">Sản phẩm mới</button>
+                <button class="filter-btn" onclick="showFeatured('sale')">Khuyến mãi</button>
+                <button class="filter-btn" onclick="showFeatured('popular')">Bán chạy</button>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Đăng ký nhận tin tức</h2>
+                <p>Nhận thông tin về sản phẩm mới và ưu đãi đặc biệt</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Nhập email của bạn">
+                    <button>Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SportStyle</h3>
+                    <p>Địa chỉ: 203 Phan Huy Ích, Phường 12, Quận Gò Vấp, TP.HCM</p>
+                    <p>Hotline: 1900 1234</p>
+                    <p>Email: info@sportstyle.vn</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hỗ trợ khách hàng</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SportStyle. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Giỏ hàng</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Tổng cộng: <span id="cartTotal">0đ</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Đăng nhập</h3>
+                <button class="close-modal" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Đăng nhập</button>
+                </form>
+                <p class="auth-switch">
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterModal()">Đăng ký ngay</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Chi tiết sản phẩm</h3>
+                <button class="close-modal" onclick="closeModal('productModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
